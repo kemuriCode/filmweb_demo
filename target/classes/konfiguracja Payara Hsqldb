@@ -1,0 +1,17 @@
+Upewnij się że serwer Glassfish jest zatrzymany. Skopiuj plik z lokalizacji
+‘<ścieżka do rozpakowanych plików hsql>\hsqldb\lib\hsqldb.jar’I wklej go do
+‘<ścieżka do katalogu glassfisha>/domains/domain1/lib/ext’.
+Otwórz plik z konfiguracją domeny w notatniku
+‘<ścieżka do katalogu glassfisha>/domains/domain1/config/domain.xml’
+Znajdź sekcję ‘<resources>’ i wklej tam następującą konfigurację :
+
+
+<jdbc-connection-pool driver-classname="" datasource-classname="org.hsqldb.jdbc.JDBCDataSource"
+res-type="javax.sql.DataSource" description="" name="HSQLPool" ping="true">
+<property name="DatabaseName" value="jdbc:hsqldb:hsql://localhost/workdb"></property>
+<property name="User" value="SA"></property>
+<property name="Password" value=""></property>
+<property name="connectionAttributes" value=";ifexists=true"></property>
+</jdbc-connection-pool>
+<jdbc-resource pool-name="HSQLPool" description="DataSource for demo apps with HSQLDB"
+jndi-name="jdbc/demoapps"></jdbc-resource>
